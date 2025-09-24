@@ -1,4 +1,7 @@
 package model.enums;
 
-public class TypeCompte {
+public enum TypeCompte {
+    COURANT,
+    EPARGNE,
+    DEPOT_A_TERME
 }
