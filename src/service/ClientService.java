@@ -11,11 +11,11 @@ public class ClientService {
         this.clients = new HashMap<>();
     }
 
-    public void AddClient(Client c) {
+    public void addClient(Client c) {
         clients.put(c.getIdClient(), c);
     }
 
-    public void UpdateClient(int idClient, Client client) {
+    public void updateClient(int idClient, Client client) {
         if (clients.containsKey(idClient)) {
             clients.put(idClient, client);
         } else {
@@ -23,7 +23,7 @@ public class ClientService {
         }
     }
 
-    public void DeleteClient(int idClient) {
+    public void deleteClient(int idClient) {
         if (clients.containsKey(idClient)) {
             clients.remove(idClient);
         } else {
@@ -32,7 +32,7 @@ public class ClientService {
 
     }
 
-    public Optional<Client> FindClientByID(int idClient) {
+    public Optional<Client> findClientByID(int idClient) {
         if (clients.containsKey(idClient)) {
             return Optional.of(clients.get(idClient));
         } else {
@@ -41,7 +41,7 @@ public class ClientService {
     }
 
 
-    public Optional<Client> FindClientByEmail(String email) {
+    public Optional<Client> findClientByEmail(String email) {
         for (Map.Entry<Integer, Client> c : clients.entrySet()) {
             if (c.getValue().getEmail().equals(email)) {
                 return Optional.of(c.getValue());
@@ -54,7 +54,7 @@ public class ClientService {
     public List<Client> getAllClients(){
         return  new ArrayList<>(clients.values());
     }
-    public boolean CheckClient(int ClientID){
+    public boolean checkClient(int ClientID){
         return clients.containsKey(ClientID);
     }
 }

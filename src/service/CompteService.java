@@ -13,11 +13,11 @@ public class CompteService {
         comptes = new ArrayList<>();
     }
 
-    public void AddAccount(Compte compte) {
+    public void addAccount(Compte compte) {
         comptes.add(compte);
     }
 
-    public void UpdateAccount(int idAccount, Compte newAccount) {
+    public void updateAccount(int idAccount, Compte newAccount) {
         for (int i = 0; i < comptes.size(); i++) {
             if (comptes.get(i).getIdCompte() == idAccount) {
                 comptes.set(i, newAccount);
@@ -26,11 +26,11 @@ public class CompteService {
         }
     }
 
-    public boolean DeleteAccount(Compte compte) {
+    public boolean deleteAccount(Compte compte) {
         return comptes.remove(compte);
     }
 
-    public Optional<Compte> FindCompteByID(int AccId) {
+    public Optional<Compte> findCompteByID(int AccId) {
         for (Compte compte : comptes) {
             if (compte.getIdCompte() == AccId) {
                 return Optional.of(compte);
@@ -39,11 +39,11 @@ public class CompteService {
         return Optional.empty();
     }
 
-    public List<Compte> GetAllAccounts() {
+    public List<Compte> getAllAccounts() {
         return comptes;
     }
 
-    public List<Compte> FindAccountsByClient(int IdClient) {
+    public List<Compte> findAccountsByClient(int IdClient) {
         List<Compte> AccountsClient = new ArrayList<>();
         for (Compte compte : comptes) {
             if (compte.getClient().getIdClient() == IdClient) {
