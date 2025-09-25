@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Compte {
+    private static int counter = 1;
+
     private int idCompte;
     private TypeCompte typeCompte;
     private double solde;
     private List<Transaction> transactions;
     private Client client;
 
-    public Compte(int idCompte, TypeCompte typeCompte, double solde, Client client) {
-        this.idCompte = idCompte;
+    public Compte(TypeCompte typeCompte, double solde, Client client) {
+        this.idCompte = counter++;
         this.typeCompte = typeCompte;
         this.solde = solde;
         this.client = client;
