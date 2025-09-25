@@ -4,6 +4,9 @@ import model.enums.TypeTransaction;
 import java.time.LocalDateTime;
 
 public class Transaction {
+
+    private static int counter = 1;
+
     private int idTransaction;
     private TypeTransaction typeTransaction;
     private double montant;
@@ -12,8 +15,8 @@ public class Transaction {
     private Compte compteSource;
     private Compte compteDestination;
 
-    public Transaction(int idTransaction, TypeTransaction typeTransaction, double montant, LocalDateTime date, String motif, Compte compteSource, Compte compteDestination) {
-        this.idTransaction = idTransaction;
+    public Transaction(TypeTransaction typeTransaction, double montant, LocalDateTime date, String motif, Compte compteSource, Compte compteDestination) {
+        this.idTransaction = counter++;
         this.typeTransaction = typeTransaction;
         this.montant = montant;
         this.date = date;
