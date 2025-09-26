@@ -3,14 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gestionnaire extends Personne {
+public class Manager extends Personne {
     private int idGestionnaire;
     private String departement;
     private List<Client> listeClients;
 
-    public Gestionnaire(int idGestionnaire, String nom, String prenom, String email, String motDePasse, String departement) {
+    public Manager(String nom, String prenom, String email, String motDePasse, String departement) {
         super(nom, prenom, email, motDePasse);
-        this.idGestionnaire = idGestionnaire;
+       // this.idGestionnaire = idGestionnaire;
         this.departement = departement;
         this.listeClients = new ArrayList<>();
     }

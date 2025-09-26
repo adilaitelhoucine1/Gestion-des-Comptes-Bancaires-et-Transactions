@@ -1,9 +1,11 @@
 package controller;
 
 import model.Client;
+import views.ClientView;
 import service.ClientService;
 import service.TransactionService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ClientController {
@@ -35,6 +37,24 @@ public class ClientController {
             System.out.println("Erreur de creation de compte");
         }
 
+    }
+
+    public void login() {
+        System.out.println("Entrer Votre Email");
+        String email=scanner.nextLine();
+        System.out.println("Entrer Votre Mot de passe");
+        String password=scanner.nextLine();
+        Optional<Client> optionalClient = clientService.findClientByEmail(email);
+        if(optionalClient.isPresent()){
+            Client client = optionalClient.get();
+            if(client.getMotDePasse().equals(password)){
+                System.out.println("Connexion avec succes");
+                ClientView clientView = new ClientView();
+               // clientView.showMenu(this.activeClient);
+            }else{
+                System.out.println("Connexion Echoue");
+            }
+        }
     }
 
 
