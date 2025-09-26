@@ -1,9 +1,21 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import controller.AuthController;
+import controller.ClientController;
+import service.ClientService;
+import service.ManagerService;
+import service.TransactionService;
+import views.ClientView;
+
+
 public class Main {
     public static void main(String[] args) {
 
 
-        System.out.println();
+        ClientService clientService = new ClientService();
+        ManagerService managerService=new ManagerService();
+        ClientView clientView= new ClientView();
+        TransactionService transactionService=new TransactionService();
+        ClientController clientController=new ClientController(clientService,clientView,transactionService);
+        AuthController authController = new AuthController(clientService, managerService,clientController);
+        authController.start();
     }
 }

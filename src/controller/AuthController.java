@@ -5,6 +5,8 @@ import model.Manager;
 import model.Personne;
 import service.ClientService;
 import service.ManagerService;
+import views.ClientView;
+
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -12,12 +14,14 @@ public class AuthController {
 
     private ClientService clientService;
     private ManagerService managerService;
+    private  ClientController clientController;
     private Scanner scanner;
     private Personne activeClient;
 
-    public AuthController(ClientService clientService, ManagerService managerService) {
+    public AuthController(ClientService clientService, ManagerService managerService,ClientController clientController) {
         this.clientService = clientService;
         this.managerService = managerService;
+        this.clientController=clientController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -28,6 +32,8 @@ public class AuthController {
             System.out.println("3. Login as Manager");
             System.out.println("4. Register as Manager");
             System.out.println("5. Exit");
+
+            System.out.println("Choice : ");
             String choice = scanner.nextLine();
 
             switch (choice) {
@@ -67,7 +73,11 @@ public class AuthController {
         Client client = new Client(firstName, secondName, email, password);
         this.activeClient=client;
         clientService.addClient(client);
+        clientController.startSession(client);
+
         System.out.println("client cree avec succes.");
+        ClientView clientView = new ClientView();
+        clientView.showMenu((Client) activeClient);
     }
 
     public void loginClient() {
@@ -79,7 +89,7 @@ public class AuthController {
         if (optionalClient.isPresent() && optionalClient.get().getMotDePasse().equals(password)) {
             System.out.println("Connexion avec succes");
             this.activeClient=optionalClient.get();
-            ClientController clientController = new ClientController(clientService, /* transactionService */ null);
+          //  ClientController clientController = new ClientController(clientService, /* transactionService */ null);
            // clientController.startSession(optionalClient.get());
         } else {
             System.out.println("Connexion echouee");
@@ -137,7 +147,7 @@ public class AuthController {
 
     public void logout() {
         this.activeClient = null;
-        System.out.println("Déconnexion réussie !");
+        System.out.println("Deconnexion reussie !");
 
     }
 
