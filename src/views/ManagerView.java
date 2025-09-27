@@ -130,7 +130,11 @@ public class ManagerView {
         System.out.print("Entrez l'email du client : ");
         return scanner.nextLine();
     }
-
+    public String getClientPassword(){
+        scanner.nextLine();
+        System.out.print("Entrez nouveau mot de passe : ");
+        return scanner.nextLine();
+    }
     public double getInitialBalance() {
         System.out.print("Entrez le solde initial du compte : ");
         return scanner.nextDouble();

@@ -19,7 +19,7 @@ public class Main {
         ManagerView managerView = new ManagerView();
 
 
-        ClientController clientController = new ClientController(clientService, clientView, transactionService);
+        ClientController clientController = new ClientController(clientService, clientView, transactionService,managerView);
         ManagerController managerController = new ManagerController(managerService, clientService, managerView,compteService);
 
 

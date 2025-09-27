@@ -57,7 +57,14 @@ public class ClientService {
     public List<Client> getAllClients(){
         return  new ArrayList<>(clients.values());
     }
-    public boolean checkClient(int ClientID){
-        return clients.containsKey(ClientID);
+
+    public boolean checkClient(String email) {
+        for (Client client : clients.values()) {
+            if (client.getEmail().equalsIgnoreCase(email)) {
+                return true;
+            }
+        }
+        return false;
     }
+
 }

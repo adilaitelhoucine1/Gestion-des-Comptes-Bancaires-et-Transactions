@@ -8,7 +8,10 @@ import model.enums.TypeTransaction;
 import java.util.*;
 
 public class ClientView {
-
+    private Scanner scanner;
+    public ClientView(){
+        this.scanner=new Scanner(System.in);
+    }
     public int showMenu(Client client) {
         System.out.println("\n=== Menu Client ===");
         System.out.println("1. Afficher les informations du compte");
@@ -27,13 +30,26 @@ public class ClientView {
     }
 
     public void displayAccountInfo(Client client) {
-        System.out.println("======= informations personnelles  =======");
+        System.out.println("======= Informations Personnelles =======");
         System.out.println("===============================================");
         System.out.println("Nom: " + client.getNom());
         System.out.println("Prénom: " + client.getPrenom());
         System.out.println("Email: " + client.getEmail());
+
+        if (client.getComptes() == null || client.getComptes().isEmpty()) {
+            System.out.println("Aucun compte trouvé.");
+        } else {
+            System.out.println("\n--- Comptes ---");
+            for (Compte compte : client.getComptes()) {
+                System.out.println("Numéro de compte: " + compte.getIdCompte());
+                System.out.println("Type: " + compte.getTypeCompte());
+                System.out.println("Solde: " + compte.getSolde() + " DH");
+                System.out.println("---");
+            }
+        }
         System.out.println("===============================================");
     }
+
 
     public void displayTransactions(Compte compte, List<Transaction> transactions) {
         System.out.println("---------------------------------------------------");
@@ -54,4 +70,24 @@ public class ClientView {
         }
     }
 
+    public int getSourceAccountId() {
+        System.out.print("Entrez l'ID du compte source : ");
+        return scanner.nextInt();
+    }
+
+    public int getDestinationAccountId() {
+        System.out.print("Entrez l'ID du compte destination : ");
+        return scanner.nextInt();
+    }
+
+    public double getTransferAmount() {
+        System.out.print("Entrez le montant à transférer : ");
+        return scanner.nextDouble();
+    }
+
+    public String getTransferReason() {
+        scanner.nextLine();
+        System.out.print("Entrez la raison du virement (facultatif) : ");
+        return scanner.nextLine();
+    }
 }
