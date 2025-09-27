@@ -61,7 +61,6 @@ public class ManagerView {
             for (Compte compte : comptes) {
                 System.out.println("Numéro de compte: " + compte.getIdCompte());
                 System.out.println("Solde: " + compte.getSolde() + " DH");
-                //System.out.println("Date de création: " + compte.getDateCreation());
                 System.out.println("---");
             }
         } else {

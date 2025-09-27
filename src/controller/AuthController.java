@@ -145,7 +145,7 @@ public class AuthController {
             Manager manager = optionalManager.get();
             this.activeClient=manager;
             //ManagerController managerController = new ManagerController(managerService);
-           // managerController.startSession(manager);
+            managerController.startSession(manager);
         } else {
             System.out.println("Email ou mot de passe incorrect.");
         }

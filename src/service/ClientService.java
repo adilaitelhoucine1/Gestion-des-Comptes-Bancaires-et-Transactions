@@ -6,13 +6,16 @@ import java.util.*;
 
 public class ClientService {
     private Map<Integer, Client> clients;
-
+    private int nextId=1;
     public ClientService() {
         this.clients = new HashMap<>();
     }
 
     public void addClient(Client c) {
+        c.setIdClient(nextId);
         clients.put(c.getIdClient(), c);
+        nextId ++;
+
     }
 
     public void updateClient(int idClient, Client client) {

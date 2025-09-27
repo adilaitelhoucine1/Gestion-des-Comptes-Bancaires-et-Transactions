@@ -11,6 +11,7 @@ import views.ManagerView;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class ManagerController {
 
@@ -36,7 +37,7 @@ public class ManagerController {
                     managerView.displayAllClients(clients);
                     break;
                 case 2:
-                    // searchClient();
+                    searchClient();
                     break;
                 case 3:
 
@@ -64,11 +65,9 @@ public class ManagerController {
                     managerView.displayAllAccounts(allClients);
                     break;
                 case 6:
-
-                    /// displayStatistics();
+                    displayStatistics();
                     break;
                 case 7:
-                    // Déconnecter
                     sessionActive = false;
                     System.out.println("Déconnexion réussie !");
                     break;
@@ -83,7 +82,7 @@ public class ManagerController {
 
         String email = managerView.getClientEmail();
 
-        var optionalClient = clientService.findClientByEmail(email);
+        Optional<Client> optionalClient = clientService.findClientByEmail(email);
         if (optionalClient.isEmpty()) {
             System.out.println("Aucun client trouvr avec cet email.");
             return;
@@ -92,7 +91,6 @@ public class ManagerController {
 
         double balance = managerView.getInitialBalance();
         TypeCompte accountType = managerView.getAccountType();
-        // int accountId = client.getComptes().size();
 
 
         Compte compte = new Compte(accountType, balance, client);
@@ -106,5 +104,21 @@ public class ManagerController {
         managerView.showAccountCreated(compte);
     }
 
+    public void searchClient() {
+        System.out.println("\n=== Recherche client ===");
+        String email=managerView.getClientEmail();
+        Optional<Client> optionalClient = clientService.findClientByEmail(email);
+        if (optionalClient.isEmpty()) {
+            System.out.println("Aucun client trouvr avec cet email.");
+            return;
+        }
+        Client client = optionalClient.get();
+        managerView.displayClientDetails(client);
+    }
+
+    public  void displayStatistics(){
+        List<Client> clients = clientService.getAllClients();
+        managerView.displayStatistics(clients);
+    }
 
 }
