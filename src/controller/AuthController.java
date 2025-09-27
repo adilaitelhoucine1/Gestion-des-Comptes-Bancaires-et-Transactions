@@ -15,13 +15,15 @@ public class AuthController {
     private ClientService clientService;
     private ManagerService managerService;
     private  ClientController clientController;
+    private  ManagerController managerController;
     private Scanner scanner;
     private Personne activeClient;
 
-    public AuthController(ClientService clientService, ManagerService managerService,ClientController clientController) {
+    public AuthController(ClientService clientService, ManagerService managerService,ClientController clientController ,ManagerController managerController) {
         this.clientService = clientService;
         this.managerService = managerService;
         this.clientController=clientController;
+        this.managerController=managerController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -127,6 +129,7 @@ public class AuthController {
         managerService.addGestionnaire(manager);
         this.activeClient=manager;
         System.out.println("Manager enregistré avec succès.");
+        managerController.startSession((Manager) activeClient);
     }
 
     public void loginManager() {

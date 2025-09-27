@@ -1,5 +1,6 @@
 package service;
 
+import model.Client;
 import model.Manager;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ManagerService {
         return managers.removeIf(g -> g.getIdGestionnaire() == idGestionnaire);
     }
 
-     public boolean addClientToGestionnaire(int idGestionnaire, model.Client client) {
+     public boolean addClientToGestionnaire(int idGestionnaire, Client client) {
         Optional<Manager> optGest = managers.stream()
                 .filter(g -> g.getIdGestionnaire() == idGestionnaire)
                 .findFirst();
@@ -42,7 +43,7 @@ public class ManagerService {
         return false;
     }
 
-    public boolean removeClientFromGestionnaire(int idGestionnaire, model.Client client) {
+    public boolean removeClientFromGestionnaire(int idGestionnaire, Client client) {
         Optional<Manager> optGest = managers.stream()
                 .filter(g -> g.getIdGestionnaire() == idGestionnaire)
                 .findFirst();
