@@ -27,6 +27,7 @@ public class ClientView {
     }
 
     public void displayAccountInfo(Client client) {
+        System.out.println("======= informations personnelles  =======");
         System.out.println("===============================================");
         System.out.println("Nom: " + client.getNom());
         System.out.println("Prénom: " + client.getPrenom());

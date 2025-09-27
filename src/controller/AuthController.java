@@ -66,35 +66,38 @@ public class AuthController {
         String email = scanner.nextLine();
         System.out.println("Entrer votre Mot De Passe");
         String password = scanner.nextLine();
+
         if (!isValidEmail(email)) {
             System.out.println("Email invalide.");
             return;
         }
-        Client client = new Client(firstName, secondName, email, password);
-        this.activeClient=client;
-        clientService.addClient(client);
-        clientController.startSession(client);
 
-        System.out.println("client cree avec succes.");
-        ClientView clientView = new ClientView();
-        clientView.showMenu((Client) activeClient);
+        Client client = new Client(firstName, secondName, email, password);
+        this.activeClient = client;
+        clientService.addClient(client);
+        System.out.println("Client créé avec succès.");
+
+        clientController.startSession(client);
     }
+
 
     public void loginClient() {
         System.out.println("Entrer Votre Email");
         String email = scanner.nextLine();
         System.out.println("Entrer Votre Mot de passe");
         String password = scanner.nextLine();
+
         Optional<Client> optionalClient = clientService.findClientByEmail(email);
         if (optionalClient.isPresent() && optionalClient.get().getMotDePasse().equals(password)) {
-            System.out.println("Connexion avec succes");
-            this.activeClient=optionalClient.get();
-          //  ClientController clientController = new ClientController(clientService, /* transactionService */ null);
-           // clientController.startSession(optionalClient.get());
+            System.out.println("Connexion réussie !");
+            this.activeClient = optionalClient.get();
+
+             clientController.startSession(optionalClient.get());
         } else {
-            System.out.println("Connexion echouee");
+            System.out.println("Connexion échouée.");
         }
     }
+
 
     public void registerManager() {
         System.out.println("Entrer le nom du manager:");

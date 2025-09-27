@@ -6,8 +6,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class ManagerService {
-    private List<Manager> managers = new ArrayList<>();
+    private List<Manager> managers ;
     private int nextId = 1;
+
+    public  ManagerService(){
+        this.managers=new ArrayList<>();
+    }
 
     public void addGestionnaire(Manager manager) {
         managers.add(manager);
